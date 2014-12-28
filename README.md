@@ -1,4 +1,6 @@
-drone.vim
+adrone.vim
 =========
 
-dro~~ne, dro~~~n.
+If you cannot use twitter, you can use this.
+You mutter to local file.
+mutter-! mutter-!
