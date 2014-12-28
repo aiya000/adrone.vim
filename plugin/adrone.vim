@@ -14,6 +14,11 @@ augroup adrone
 augroup END
 
 
+let g:adrone_say_output_filepath  = get(g:, 'adrone_say_output_filepath', expand('~/.adrone_say_log'))
+let g:adrone_say_separator_string = get(g:, 'adrone_say_separator_string', repeat('-', 40))
+
+
+
 command! AdroneSay call adrone#open_say_buffer()
 
 
