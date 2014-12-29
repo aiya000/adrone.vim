@@ -7,7 +7,7 @@ set cpo&vim
 " Open view buffer
 function! adrone#view#open_buffer()
 	let l:adrone_file = g:adrone_say_output_filepath
-	execute ':edit' l:adrone_file
+	silent execute ':edit' l:adrone_file
 
 	call s:adrone_view_option_setting()
 	call s:define_default_buffer_key_mappings()
