@@ -10,24 +10,38 @@ function! adrone#say#open_buffer()
 
 	execute 'botright split' 'adrone_say'
 	execute l:buf_size . ' wincmd _'
-	setl nonumber
-	let &filetype = 'adrone_say'
 
 	call s:define_default_buffer_key_mappings()
-	call s:adrone_say_setting()
+	call s:adrone_say_option_setting()
+	call s:adrone_say_action_setting()
 
 	startinsert
 endfunction
 
 
-" Defining Plugin keymappings
+" Defining plugin buffer keymappings
 function! s:define_default_buffer_key_mappings()
 	nmap <silent><buffer> <CR> <Plug>(adrone_post_say)
 endfunction
 
 
+" Optimize options in buffer
+function! s:adrone_say_option_setting()
+	setf adrone_say
+
+	setl bufhidden=hide
+	setl nobuflisted
+
+	setl nomodified
+	setl modifiable
+
+	setl nonumber
+	setl statusline=adrone_say
+endfunction
+
+
 " Setting for say buffer
-function! s:adrone_say_setting()
+function! s:adrone_say_action_setting()
 	augroup AdroneSay
 		autocmd!
 		autocmd BufWriteCmd <buffer> echohl Error | echo 'please enter to say' | echohl None
