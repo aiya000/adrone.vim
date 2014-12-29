@@ -4,14 +4,14 @@ set cpo&vim
 "-------------------"
 
 
-function! adrone#open_view_buffer()
-	call adrone#view#open_buffer()
+function! adrone#open_home_buffer()
+	call adrone#home#open_buffer()
 endfunction
 
 
-function! adrone#reload_view()
+function! adrone#reload_home()
 	" Same as Open
-	call adrone#view#open_buffer()
+	call adrone#home#open_buffer()
 endfunction
 
 
@@ -23,8 +23,8 @@ endfunction
 function! adrone#post_say()
 	call adrone#say#post()
 
-	" Reload View
-	call adrone#view#open_buffer()
+	" Reload home
+	call adrone#home#open_buffer()
 endfunction
 
 

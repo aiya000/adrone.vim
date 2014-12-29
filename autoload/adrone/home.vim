@@ -4,32 +4,32 @@ set cpo&vim
 "-------------------"
 
 
-" Open view buffer
-function! adrone#view#open_buffer()
+" Open home buffer
+function! adrone#home#open_buffer()
 	let l:adrone_file = g:adrone_say_output_filepath
 	silent execute ':edit' l:adrone_file
 
-	call s:adrone_view_option_setting()
+	call s:adrone_home_option_setting()
 	call s:define_default_buffer_key_mappings()
 endfunction
 
 
 " Optimize options in buffer
-function! s:adrone_view_option_setting()
-	setf adrone_view
+function! s:adrone_home_option_setting()
+	setf adrone_home
 
 	setl nomodifiable
 	setl noswapfile
 	setl buftype=nofile
 
 	setl nonumber
-	setl statusline=adrone_view
+	setl statusline=[adrone_home]
 endfunction
 
 
 " Defining plugin buffer keymappings
 function! s:define_default_buffer_key_mappings()
-	nmap <silent><buffer> <C-r> <Plug>(adrone_reload_view)
+	nmap <silent><buffer> <C-r> <Plug>(adrone_reload_home)
 	nmap <silent><buffer> s     <Plug>(adrone_open_say)
 endfunction
 

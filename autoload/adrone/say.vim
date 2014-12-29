@@ -36,7 +36,7 @@ function! s:adrone_say_option_setting()
 	setl modifiable
 
 	setl nonumber
-	setl statusline=adrone_say
+	setl statusline=[adrone_say]
 endfunction
 
 
