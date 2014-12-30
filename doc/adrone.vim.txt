@@ -83,7 +83,7 @@ g:adrone_say_output_filepath			*g:adrone_say_output_filepath*
 
 g:adrone_say_separator_string			*g:adrone_say_separator_string*
 		つぶやきをポストした後の出力時に付与される区切り線を指定します。
-		デフォルト: repeat('-', 80)
+		デフォルト: repeat('-', 120)
 
 g:adrone_say_buffer_size			*g:adrone_say_buffer_size*
 		つぶやきウィンドウを開く時のウィンドウ縦サイズを指定します。
