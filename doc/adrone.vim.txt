@@ -1,4 +1,6 @@
-*adrone.txt*    あなたのつぶやきを支援するプラグインです。
+*adrone.txt*
+
+あなたのつぶやきを支援するプラグインです。
 
 Version: 0.9
 Author : aiya000 <aiya.develop@gmail.com>
