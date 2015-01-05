@@ -87,9 +87,13 @@ function! s:get_format_text()
 	let l:date_string = strftime('%x %H:%M', localtime())
 	let l:lines       = getbufline('%', 0, '$')
 
-	let l:text = insert(l:lines, l:separator, 0)
-	let l:lines[-1] .= '        ' . '[[' . l:date_string . ']]'
+	let l:head_line_head = '[[' . l:date_string . ']]' . '  '
+	let l:text_head = l:head_line_head . l:lines[0]
 
+	let l:line_head_len  = strwidth(l:head_line_head)
+	let l:tail_line_head = repeat(' ', l:line_head_len)
+	let l:text_tail      = map(l:lines[1:], "'" . l:tail_line_head . "' . v:val")
+	let l:text = [l:separator] + [l:text_head] + l:text_tail
 	return l:text
 endfunction
 
