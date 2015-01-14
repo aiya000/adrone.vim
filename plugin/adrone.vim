@@ -9,6 +9,8 @@ let s:save_cpo = &cpo
 set cpo&vim
 "-------------------"
 
+let s:adrone_version = '0.0.1'
+
 augroup AdroneSay
 	autocmd!
 augroup END
@@ -20,8 +22,9 @@ let g:adrone_say_buffer_size      = get(g:, 'adrone_say_buffer_size', 2)
 
 
 
-command! AdroneOpen call adrone#open_home_buffer()
-command! AdroneSay  call adrone#open_say_buffer()
+command! AdroneOpen    call adrone#open_home_buffer()
+command! AdroneSay     call adrone#open_say_buffer()
+command! AdroneVersion echo s:adrone_version
 
 
 nnoremap <silent> <Plug>(adrone_open_say)    :<C-u>call adrone#open_say_buffer()<CR>
