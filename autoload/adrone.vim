@@ -23,19 +23,24 @@ endfunction
 function! adrone#post_say()
 	call adrone#say#post()
 
-	"if s:adrone_home_window_exists()
-	"	" Reload home
-	"	call adrone#home#open_buffer()
-	"endif
+	if s:adrone_home_window_exists()
+		" Reload home
+		call adrone#home#open_buffer()
+	endif
 endfunction
 
 
-"function! s:adrone_home_window_exists()
-"	for l:w in range(1, winnr('$'))
-"		let bt = getwinvar(w, '&buftype')
-"		if bt ==# 'nofile'
-"	endfor
-"endfunction
+function! s:adrone_home_window_exists()
+	for l:w in range(1, winnr('$'))
+		let l:buf_filetype = getwinvar(w, '&filetype')
+
+		if l:buf_filetype ==# 'adrone_home'
+			return 1
+		endif
+	endfor
+
+	return 0
+endfunction
 
 
 "-------------------"
