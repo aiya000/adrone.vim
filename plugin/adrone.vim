@@ -9,7 +9,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 "-------------------"
 
-let s:adrone_version = '0.0.1'
+let s:adrone_version = '0.0.11'
 
 augroup AdroneSay
 	autocmd!
