@@ -57,13 +57,11 @@ function! adrone#say#post()
 	try
 		" Getting details
 		let l:say_text  = s:get_format_text()
-		let l:past_text = readfile(l:output_file)   " replacement of append writefile
-		let l:all_text  = l:say_text + l:past_text  " _
 
 		" Apply to output file
-		call writefile(l:all_text, l:output_file)
+		call writefile([l:say_text], l:output_file, 'a')
 
-		echo 'Sending OK'
+		echo 'Output OK'
 		bdelete!
 	catch
 		" If happened the errors, don't close say buffer
