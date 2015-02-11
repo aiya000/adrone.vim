@@ -6,7 +6,8 @@ set cpo&vim
 
 " Open home buffer
 function! adrone#home#open_buffer()
-	let l:adrone_file = g:adrone_say_output_filepath
+	let l:daily_file  = strftime('%Y-%m-%d_adrone_say.log', localtime())
+	let l:adrone_file = g:adrone_say_output_dir . '/' . l:daily_file
 	silent execute ':edit' l:adrone_file
 
 	call s:adrone_home_option_setting()

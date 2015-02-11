@@ -9,14 +9,14 @@ let s:save_cpo = &cpo
 set cpo&vim
 "-------------------"
 
-let s:adrone_version = '0.0.13'
+let s:adrone_version = '0.0.14'
 
 augroup AdroneSay
 	autocmd!
 augroup END
 
 
-let g:adrone_say_output_filepath  = get(g:, 'adrone_say_output_filepath', expand('~/.adrone_say_log'))
+let g:adrone_say_output_dir       = get(g:, 'adrone_say_output_dir', expand('~/.adrone'))
 let g:adrone_say_separator_string = get(g:, 'adrone_say_separator_string', repeat('-', 120))
 let g:adrone_say_buffer_size      = get(g:, 'adrone_say_buffer_size', 2)
 

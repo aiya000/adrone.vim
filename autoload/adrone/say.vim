@@ -51,14 +51,16 @@ endfunction
 
 " Say to output file
 function! adrone#say#post()
-	let l:output_file = g:adrone_say_output_filepath
-	call s:if_absent_make(l:output_file)
+	let l:daily_file = strftime('%Y-%m-%d_adrone_say.log', localtime())
+	call s:if_absent_make_daily(l:daily_file)
 
+	let l:output_dir = g:adrone_say_output_dir
 	try
 		" Getting details
-		let l:say_text  = s:get_format_text()
-		let l:past_text = readfile(l:output_file)   " replacement of append writefile
-		let l:all_text  = l:say_text + l:past_text  " _
+		let l:say_text    = s:get_format_text()
+		let l:output_file = l:output_dir . '/' . l:daily_file
+		let l:past_text   = readfile(l:output_file)   " replacement of append writefile
+		let l:all_text    = l:say_text + l:past_text  " _
 
 		" Apply to output file
 		call writefile(l:all_text, l:output_file)
@@ -72,11 +74,18 @@ function! adrone#say#post()
 endfunction
 
 
-" If not exists outputfile, make it
-function! s:if_absent_make(filepath)
-	if !filereadable(a:filepath)
+" If not exists output dirctory and output file, make it
+function! s:if_absent_make_daily(daily_file)
+	let l:output_dir  = g:adrone_say_output_dir
+	let l:output_file = l:output_dir . '/' . a:daily_file
+
+	if !isdirectory(l:output_dir)
+		call mkdir(l:output_dir)
+	endif
+
+	if !filereadable(l:output_file)
 		let l:separator = g:adrone_say_separator_string
-		call writefile([l:separator], a:filepath)
+		call writefile([l:separator], l:output_file)
 	endif
 endfunction
 
