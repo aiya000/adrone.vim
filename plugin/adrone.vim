@@ -30,6 +30,8 @@ command! AdroneVersion echo s:adrone_version
 nnoremap <silent> <Plug>(adrone_open_say)    :<C-u>call adrone#open_say_buffer()<CR>
 nnoremap <silent> <Plug>(adrone_post_say)    :<C-u>call adrone#post_say()<CR>
 nnoremap <silent> <Plug>(adrone_reload_home) :<C-u>call adrone#reload_home()<CR>
+nnoremap <silent> <Plug>(adrone_next_log)    :<C-u>call adrone#load_next_log()<CR>
+nnoremap <silent> <Plug>(adrone_prev_log)    :<C-u>call adrone#load_prev_log()<CR>
 
 
 "-------------------"
