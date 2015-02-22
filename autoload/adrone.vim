@@ -20,6 +20,16 @@ function! adrone#open_say_buffer()
 endfunction
 
 
+function! adrone#load_next_adlog()
+	call adrone#home#next_adlog()
+endfunction
+
+
+function! adrone#load_prev_adlog()
+	call adrone#home#prev_adlog()
+endfunction
+
+
 function! adrone#post_say()
 	call adrone#say#post()
 

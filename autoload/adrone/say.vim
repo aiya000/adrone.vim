@@ -51,7 +51,7 @@ endfunction
 
 " Say to output file
 function! adrone#say#post()
-	let l:daily_file = strftime('%Y-%m-%d_adrone_say.log', localtime())
+	let l:daily_file = strftime('%Y-%m-%d_adrone_say.adlog', localtime())
 	call s:if_absent_make_daily(l:daily_file)
 
 	let l:output_dir = g:adrone_say_output_dir

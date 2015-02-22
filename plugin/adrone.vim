@@ -29,13 +29,13 @@ command! AdroneVersion echo s:adrone_version
 
 
 " Home key mappings
-nnoremap <silent> <Plug>(adrone_home_reload) :<C-u>call adrone#reload_home()<CR>
-nnoremap <silent> <Plug>(adrone_home_next)   :<C-u>call adrone#load_next_log()<CR>
-nnoremap <silent> <Plug>(adrone_home_prev)   :<C-u>call adrone#load_prev_log()<CR>
-nnoremap <silent> <Plug>(adrone_home_open_say)    :<C-u>call adrone#open_say_buffer()<CR>
+nnoremap <silent> <Plug>(adrone_home_reload)   :<C-u>call adrone#reload_home()<CR>
+nnoremap <silent> <Plug>(adrone_home_next)     :<C-u>call adrone#load_next_adlog()<CR>
+nnoremap <silent> <Plug>(adrone_home_prev)     :<C-u>call adrone#load_prev_adlog()<CR>
+nnoremap <silent> <Plug>(adrone_home_open_say) :<C-u>call adrone#open_say_buffer()<CR>
 
 " Say key mappings
-nnoremap <silent> <Plug>(adrone_say_post)    :<C-u>call adrone#post_say()<CR>
+nnoremap <silent> <Plug>(adrone_say_post) :<C-u>call adrone#post_say()<CR>
 
 
 "-------------------"
