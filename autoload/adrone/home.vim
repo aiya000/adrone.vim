@@ -30,8 +30,10 @@ endfunction
 
 " Defining plugin buffer keymappings
 function! s:define_default_buffer_key_mappings()
-	nmap <silent><buffer> <C-r> <Plug>(adrone_reload_home)
-	nmap <silent><buffer> s     <Plug>(adrone_open_say)
+	nmap <silent><buffer> <C-r> <Plug>(adrone_home_reload)
+	nmap <silent><buffer> ff    <Plug>(adrone_home_next)
+	nmap <silent><buffer> bb    <Plug>(adrone_home_prev)
+	nmap <silent><buffer> s     <Plug>(adrone_home_open_say)
 endfunction
 
 

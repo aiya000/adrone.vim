@@ -21,7 +21,7 @@ endfunction
 
 " Defining plugin buffer keymappings
 function! s:define_default_buffer_key_mappings()
-	nmap <silent><buffer> <CR> <Plug>(adrone_post_say)
+	nmap <silent><buffer> <CR> <Plug>(adrone_say_post)
 endfunction
 
 
