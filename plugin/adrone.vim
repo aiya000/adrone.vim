@@ -8,8 +8,16 @@ let g:loaded_adrone = 1
 let s:save_cpo = &cpo
 set cpo&vim
 "-------------------"
+"Private
 
-let s:adrone_version = '0.0.15'
+let s:AT_DAILY_PAGE = -2
+let g:adrone_private_field = {}
+let g:adrone_private_field['pages']   = []
+let g:adrone_private_field['page_at'] = s:AT_DAILY_PAGE
+
+"-------------------"
+
+let s:adrone_version = '0.0.16'
 
 augroup AdroneSay
 	autocmd!

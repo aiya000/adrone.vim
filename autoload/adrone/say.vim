@@ -5,7 +5,7 @@ set cpo&vim
 
 
 " Open say buffer
-function! adrone#say#open_buffer()
+function! adrone#say#open_buffer() "{{{
 	let l:buf_size = g:adrone_say_buffer_size
 
 	execute 'botright split' 'adrone_say'
@@ -16,17 +16,17 @@ function! adrone#say#open_buffer()
 	call s:adrone_say_action_setting()
 
 	startinsert
-endfunction
+endfunction "}}}
 
 
 " Defining plugin buffer keymappings
-function! s:define_default_buffer_key_mappings()
+function! s:define_default_buffer_key_mappings() "{{{
 	nmap <silent><buffer> <CR> <Plug>(adrone_say_post)
-endfunction
+endfunction "}}}
 
 
 " Optimize options in buffer
-function! s:adrone_say_option_setting()
+function! s:adrone_say_option_setting() "{{{
 	setf adrone_say
 
 	setl bufhidden=hide
@@ -37,20 +37,20 @@ function! s:adrone_say_option_setting()
 
 	setl nonumber
 	setl statusline=[adrone_say]
-endfunction
+endfunction "}}}
 
 
 " Setting for say buffer
-function! s:adrone_say_action_setting()
+function! s:adrone_say_action_setting() "{{{
 	augroup AdroneSay
 		autocmd!
 		autocmd BufWriteCmd <buffer> echohl Error | echo 'please enter to say' | echohl None
 	augroup END
-endfunction
+endfunction "}}}
 
 
 " Say to output file
-function! adrone#say#post()
+function! adrone#say#post() "{{{
 	let l:daily_file = strftime('%Y-%m-%d_adrone_say.adlog', localtime())
 	call s:if_absent_make_daily(l:daily_file)
 
@@ -71,11 +71,11 @@ function! adrone#say#post()
 		" If happened the errors, don't close say buffer
 		echoerr v:exception
 	endtry
-endfunction
+endfunction "}}}
 
 
 " If not exists output dirctory and output file, make it
-function! s:if_absent_make_daily(daily_file)
+function! s:if_absent_make_daily(daily_file) "{{{
 	let l:output_dir  = g:adrone_say_output_dir
 	let l:output_file = l:output_dir . '/' . a:daily_file
 
@@ -87,11 +87,11 @@ function! s:if_absent_make_daily(daily_file)
 		let l:separator = g:adrone_say_separator_string
 		call writefile([l:separator], l:output_file)
 	endif
-endfunction
+endfunction "}}}
 
 
 " Read and Format say_buffer text
-function! s:get_format_text()
+function! s:get_format_text() "{{{
 	let l:separator   = g:adrone_say_separator_string
 	let l:date_string = strftime('%x %H:%M', localtime())
 	let l:lines       = getbufline('%', 0, '$')
@@ -104,7 +104,7 @@ function! s:get_format_text()
 	let l:text_tail      = map(l:lines[1:], "'" . l:tail_line_head . "' . v:val")
 	let l:text = [l:separator] + [l:text_head] + l:text_tail
 	return l:text
-endfunction
+endfunction "}}}
 
 
 "-------------------"
