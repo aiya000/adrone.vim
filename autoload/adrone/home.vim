@@ -3,7 +3,10 @@ let s:save_cpo = &cpo
 set cpo&vim
 "-------------------"
 
+" Default page number on started up
 let s:AT_DAILY_PAGE = -2
+
+" Oldest page number
 let s:AT_LAST_PAGE  = -1
 
 "-------------------"
@@ -24,10 +27,12 @@ endfunction "}}}
 
 "" Read adrone log 'adlog' to abstract frame
 function! adrone#home#read_adlog(adlog_file) "{{{
-	setl modifiable
-	"TODO: if opened another buffer, not deleting
+	setl modifiable   " unlock temporary
+
+	" Clean up screen
 	%d
 
+	" Open adlog file or message screen
 	try
 		let l:adlog = readfile(a:adlog_file)
 	catch /E484/
@@ -39,12 +44,15 @@ function! adrone#home#read_adlog(adlog_file) "{{{
 		return
 	endtry
 
+	" Read adlog detail
 	for l:line in l:adlog
 		execute 'normal! a' . l:line . "\n"
 	endfor
+
+	" Delet brank line, and move to top
 	execute 'normal! ddgg'
 
-	setl nomodifiable
+	setl nomodifiable   " lock screen
 endfunction "}}}
 
 
@@ -52,11 +60,10 @@ endfunction "}}}
 function! adrone#home#next_adlog() "{{{
 	let l:pages   = g:adrone_private_field['pages']
 	let l:current = g:adrone_private_field['page_at']   " for readability
-	let g:adrone_private_field['page_at'] = l:current == s:AT_DAILY_PAGE
+	let g:adrone_private_field['page_at'] =
+	\		l:current == s:AT_DAILY_PAGE || l:current == len(l:pages) - 1
 	\                                     ?   len(l:pages) - 1
-	\                                     : l:current == (len(l:pages) - 1)
-	\                                     ?   (len(l:pages) - 1)
-	\                                     :   l:current + 1
+	\                                     :   l:current    + 1
 
 	call adrone#home#read_adlog(l:pages[g:adrone_private_field['page_at']])
 endfunction "}}}
@@ -67,8 +74,8 @@ function! adrone#home#prev_adlog() "{{{
 	let l:pages   = g:adrone_private_field['pages']
 	let l:current = g:adrone_private_field['page_at']   " for readability
 	let g:adrone_private_field['page_at'] = l:current == s:AT_DAILY_PAGE
-	\                                     ?   (len(l:pages) - 1)
-	\                                     : (l:current - 1) == s:AT_LAST_PAGE
+	\                                     ?   len(l:pages) - 1
+	\                                     : l:current - 1 == s:AT_LAST_PAGE
 	\                                     ?   0
 	\                                     :   l:current - 1
 
@@ -90,6 +97,11 @@ function! s:open_frame() "{{{
 	let l:daily_name = strftime('%Y-%m-%d_adrone_say.adlog', localtime())
 	let l:daily_file = g:adrone_say_output_dir . '/' . l:daily_name
 
+	" if opened another buffer, open new window
+	if expand('%') !=# ''
+		new
+	endif
+
 	call adrone#home#read_adlog(l:daily_file)
 endfunction "}}}
 
@@ -110,8 +122,8 @@ endfunction "}}}
 " Defining plugin buffer keymappings
 function! s:define_default_buffer_key_mappings() "{{{
 	nmap <silent><buffer> <C-r> <Plug>(adrone_home_reload)
-	nmap <silent><buffer> bb    <Plug>(adrone_home_next)
-	nmap <silent><buffer> ff    <Plug>(adrone_home_prev)
+	nmap <silent><buffer> b    <Plug>(adrone_home_next)
+	nmap <silent><buffer> f    <Plug>(adrone_home_prev)
 	nmap <silent><buffer> s     <Plug>(adrone_home_open_say)
 endfunction "}}}
 
