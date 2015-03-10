@@ -22,10 +22,12 @@ Variables		|adrone-variables|
 *Introduction*			*adrone-introduction*
 
 このプラグインはTwitterのできない環境でもつぶやきたい
-という人の為に作られました。
+という人の為に作られました。 ( 僕のような人のことです )
 
 「つぶやく」というアクションから
 その内容をファイルにポストし、内容を貯蓄します。
+
+つぶやきは日別に保存され、日記感覚で閲覧することができます。
 
 
 
@@ -51,28 +53,54 @@ NeoBundleを導入している場合はあなたの.vimrcに
 
 :AdroneOpen			*:AdroneOpen*
 		adrone.vimのホーム画面を開きます。
-		ホーム画面では今までつぶやいてきた内容を閲覧することができます。
+		ホーム画面では今までつぶやいてきた内容を
+		日別に閲覧することができます。
+
 
 :AdroneSay			*:AdroneSay*
 		adrone.vimのつぶやき用ウィンドウを開きます。
 
+
+:AdroneVersion			*:AdroneVersion*
+		インストールされているadrone.vimの
+		バージョンナンバーを表示します。
+
+
+
 ------------------------------------------------------------------------------
 *KeyMappings*			*adrone-keymappings*
 
-<Plug>(adrone_reload_home)	*<Plug>(adrone_reload_home)*
+<Plug>(adrone_home_reload)	*<Plug>(adrone_reload_home)*
 		ホーム画面で貯蓄されたつぶやきをリロードします。
 		ホーム画面はつぶやいた後、自動的にリロードされるので
 		通常は使用する必要がありません。
-		デフォルトでホーム画面の '<C-r>' にマッピングされています。
 
-<Plug>(adrone_open_say)		*<Plug>(adrone_open_say)*
+		デフォルト: (ホーム画面) '<C-r>'
+
+
+<Plug>(adrone_home_next)	*<Plug>(adrone_home_next)*
+		ホーム画面で次のページへ移動します。
+
+		デフォルト: (ホーム画面) 'f'
+
+
+<Plug>(adrone_home_prev)	*<Plug>(adrone_home_prev)*
+		ホーム画面で前のページへ移動します。
+
+		デフォルト: (ホーム画面) 'b'
+
+
+<Plug>(adrone_home_open_say)	*<Plug>(adrone_open_say)*
 		adroneのつぶやきウィンドウを表示します。
 		これは ':AdroneSay' と同じ挙動をします。
-		デフォルトでホーム画面の 's' にマッピングされています。
 
-<Plug>(adrone_post_say)		*<Plug>(adrone_post_say)*
+		デフォルト: (ホーム画面) 's'
+
+
+<Plug>(adrone_say_post)		*<Plug>(adrone_post_say)*
 		つぶやきウィンドウで入力した内容をポストします。
-		デフォルトでつぶやきウィンドウの '<CR>' にマッピングされています。
+
+		デフォルト: (つぶやき画面) '<CR>'
 
 
 
@@ -80,16 +108,24 @@ NeoBundleを導入している場合はあなたの.vimrcに
 *Variables*			*adrone-variables*
 
 g:adrone_say_output_filepath			*g:adrone_say_output_filepath*
-		つぶやきのポストで出力する先のファイルを指定します。
-		デフォルト: ~/.adrone_say_log
+		つぶやきのポストで出力する先のファイルを
+		格納するディレクトリ指定します。
+
+		デフォルト: ~/.adrone
+
 
 g:adrone_say_separator_string			*g:adrone_say_separator_string*
 		つぶやきをポストした後の出力時に付与される区切り線を指定します。
+
 		デフォルト: repeat('-', 120)
+
 
 g:adrone_say_buffer_size			*g:adrone_say_buffer_size*
 		つぶやきウィンドウを開く時のウィンドウ縦サイズを指定します。
+
 		デフォルト: 2
+
+
 
 ==============================================================================
 
