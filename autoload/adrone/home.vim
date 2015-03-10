@@ -56,28 +56,29 @@ function! adrone#home#read_adlog(adlog_file) "{{{
 endfunction "}}}
 
 
-"" Read next adlog
+"" Read back page adlog
 function! adrone#home#future_adlog() "{{{
-	let l:pages   = g:adrone_private_field['pages']
-	let l:current = g:adrone_private_field['page_at']   " for readability
+	let l:pages        = g:adrone_private_field['pages']
+	let l:current_page = g:adrone_private_field['page_at']   " for readability
+	let l:newest_page  = len(l:pages) - 1
 	let g:adrone_private_field['page_at'] =
-	\		  l:current == s:AT_DAILY_PAGE  ? len(l:pages) - 2
-	\		: l:current == len(l:pages) - 1 ? len(l:pages) - 1
-	\		                                : l:current    + 1
+	\		  l:current_page == s:AT_DAILY_PAGE ? l:newest_page
+	\		: l:current_page == l:newest_page   ? l:newest_page
+	\		                                    : l:current_page + 1
 
 	call adrone#home#read_adlog(l:pages[g:adrone_private_field['page_at']])
 endfunction "}}}
 
 
-"" Read previous adlog
+"" Read next page adlog
 function! adrone#home#past_adlog() "{{{
-	let l:pages   = g:adrone_private_field['pages']
-	let l:current = g:adrone_private_field['page_at']   " for readability
-	let g:adrone_private_field['page_at'] = l:current == s:AT_DAILY_PAGE
-	\                                     ?   len(l:pages) - 2
-	\                                     : l:current - 1 == s:AT_LAST_PAGE
-	\                                     ?   l:current
-	\                                     :   l:current - 1
+	let l:pages        = g:adrone_private_field['pages']
+	let l:current_page = g:adrone_private_field['page_at']   " for readability
+	let l:newest_page  = len(l:pages) - 1
+	let g:adrone_private_field['page_at'] =
+	\		  l:current_page     == s:AT_DAILY_PAGE ? l:newest_page - 1
+	\		: l:current_page - 1 == s:AT_LAST_PAGE  ? l:current_page
+	\		                                        : l:current_page - 1
 
 	call adrone#home#read_adlog(l:pages[g:adrone_private_field['page_at']])
 endfunction "}}}
