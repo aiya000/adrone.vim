@@ -20,13 +20,13 @@ function! adrone#open_say_buffer()
 endfunction
 
 
-function! adrone#load_next_adlog()
-	call adrone#home#next_adlog()
+function! adrone#load_future_adlog()
+	call adrone#home#future_adlog()
 endfunction
 
 
-function! adrone#load_prev_adlog()
-	call adrone#home#prev_adlog()
+function! adrone#load_past_adlog()
+	call adrone#home#past_adlog()
 endfunction
 
 

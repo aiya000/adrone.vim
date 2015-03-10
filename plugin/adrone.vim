@@ -17,7 +17,7 @@ let g:adrone_private_field['page_at'] = s:AT_DAILY_PAGE
 
 "-------------------"
 
-let s:adrone_version = '0.0.16'
+let s:adrone_version = '0.0.17'
 
 augroup AdroneSay
 	autocmd!
@@ -38,8 +38,8 @@ command! AdroneVersion echo s:adrone_version
 
 " Home key mappings
 nnoremap <silent> <Plug>(adrone_home_reload)   :<C-u>call adrone#reload_home()<CR>
-nnoremap <silent> <Plug>(adrone_home_next)     :<C-u>call adrone#load_next_adlog()<CR>
-nnoremap <silent> <Plug>(adrone_home_prev)     :<C-u>call adrone#load_prev_adlog()<CR>
+nnoremap <silent> <Plug>(adrone_home_future)   :<C-u>call adrone#load_future_adlog()<CR>
+nnoremap <silent> <Plug>(adrone_home_past)     :<C-u>call adrone#load_past_adlog()<CR>
 nnoremap <silent> <Plug>(adrone_home_open_say) :<C-u>call adrone#open_say_buffer()<CR>
 
 " Say key mappings

@@ -78,13 +78,13 @@ NeoBundleを導入している場合はあなたの.vimrcに
 		デフォルト: (ホーム画面) '<C-r>'
 
 
-<Plug>(adrone_home_next)	*<Plug>(adrone_home_next)*
+<Plug>(adrone_home_future)	*<Plug>(adrone_home_future)*
 		ホーム画面で次のページへ移動します。
 
 		デフォルト: (ホーム画面) 'f'
 
 
-<Plug>(adrone_home_prev)	*<Plug>(adrone_home_prev)*
+<Plug>(adrone_home_past)	*<Plug>(adrone_home_past)*
 		ホーム画面で前のページへ移動します。
 
 		デフォルト: (ホーム画面) 'b'

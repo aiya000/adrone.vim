@@ -57,26 +57,26 @@ endfunction "}}}
 
 
 "" Read next adlog
-function! adrone#home#next_adlog() "{{{
+function! adrone#home#future_adlog() "{{{
 	let l:pages   = g:adrone_private_field['pages']
 	let l:current = g:adrone_private_field['page_at']   " for readability
 	let g:adrone_private_field['page_at'] =
-	\		l:current == s:AT_DAILY_PAGE || l:current == len(l:pages) - 1
-	\                                     ?   len(l:pages) - 1
-	\                                     :   l:current    + 1
+	\		  l:current == s:AT_DAILY_PAGE  ? len(l:pages) - 2
+	\		: l:current == len(l:pages) - 1 ? len(l:pages) - 1
+	\		                                : l:current    + 1
 
 	call adrone#home#read_adlog(l:pages[g:adrone_private_field['page_at']])
 endfunction "}}}
 
 
 "" Read previous adlog
-function! adrone#home#prev_adlog() "{{{
+function! adrone#home#past_adlog() "{{{
 	let l:pages   = g:adrone_private_field['pages']
 	let l:current = g:adrone_private_field['page_at']   " for readability
 	let g:adrone_private_field['page_at'] = l:current == s:AT_DAILY_PAGE
-	\                                     ?   len(l:pages) - 1
+	\                                     ?   len(l:pages) - 2
 	\                                     : l:current - 1 == s:AT_LAST_PAGE
-	\                                     ?   0
+	\                                     ?   l:current
 	\                                     :   l:current - 1
 
 	call adrone#home#read_adlog(l:pages[g:adrone_private_field['page_at']])
@@ -102,6 +102,7 @@ function! s:open_frame() "{{{
 		new
 	endif
 
+	" Read detail for abstract frame
 	call adrone#home#read_adlog(l:daily_file)
 endfunction "}}}
 
@@ -122,8 +123,8 @@ endfunction "}}}
 " Defining plugin buffer keymappings
 function! s:define_default_buffer_key_mappings() "{{{
 	nmap <silent><buffer> <C-r> <Plug>(adrone_home_reload)
-	nmap <silent><buffer> b    <Plug>(adrone_home_next)
-	nmap <silent><buffer> f    <Plug>(adrone_home_prev)
+	nmap <silent><buffer> b     <Plug>(adrone_home_future)
+	nmap <silent><buffer> f     <Plug>(adrone_home_past)
 	nmap <silent><buffer> s     <Plug>(adrone_home_open_say)
 endfunction "}}}
 
