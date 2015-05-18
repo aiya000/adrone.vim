@@ -13,6 +13,8 @@ Install			|adrone-install|
 Interface		|adrone-interface|
   Commands		  |adrone-commands|
   KeyMappings		  |adrone-keymappings|
+    KeyMappingsHome	  |adrone-keymappings-home|
+    KeyMappingsSay	  |adrone-keymappings-say|
 Variables		|adrone-variables|
 
 =============================================
@@ -69,6 +71,8 @@ NeoBundleを導入している場合はあなたの.vimrcに
 
 ------------------------------------------------------------------------------
 *KeyMappings*			*adrone-keymappings*
+--------------------------------------------------
+*KeyMappingsHome*		*adrone-keymappings-home*
 
 <Plug>(adrone_home_reload)	*<Plug>(adrone_reload_home)*
 		ホーム画面で貯蓄されたつぶやきをリロードします。
@@ -96,6 +100,8 @@ NeoBundleを導入している場合はあなたの.vimrcに
 
 		デフォルト: (ホーム画面) 's'
 
+--------------------------------------------------
+*KeyMappingsSay*		*adrone-keymappings-say*
 
 <Plug>(adrone_say_post)		*<Plug>(adrone_post_say)*
 		つぶやきウィンドウで入力した内容をポストします。
@@ -124,6 +130,11 @@ g:adrone_say_buffer_size			*g:adrone_say_buffer_size*
 		つぶやきウィンドウを開く時のウィンドウ縦サイズを指定します。
 
 		デフォルト: 2
+
+g:adrone_home_default_keymappings		*g:adrone_home_default_keymappings*
+		デフォルトキーマッピングを適用するかしないかを設定します。
+
+		デフォルト: 1
 
 
 

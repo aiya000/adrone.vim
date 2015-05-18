@@ -21,7 +21,10 @@ function! adrone#home#open_buffer() "{{{
 	" Open view buffer
 	call s:open_frame()
 	call s:adrone_home_option_setting()
-	call s:define_default_buffer_key_mappings()
+
+	if g:adrone_home_default_keymappings
+		call s:define_default_buffer_key_mappings()
+	endif
 endfunction "}}}
 
 

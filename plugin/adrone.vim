@@ -24,9 +24,10 @@ augroup AdroneSay
 augroup END
 
 
-let g:adrone_say_output_dir       = get(g:, 'adrone_say_output_dir', expand('~/.adrone'))
-let g:adrone_say_separator_string = get(g:, 'adrone_say_separator_string', repeat('-', 120))
-let g:adrone_say_buffer_size      = get(g:, 'adrone_say_buffer_size', 2)
+let g:adrone_say_output_dir           = get(g:, 'adrone_say_output_dir', expand('~/.adrone'))
+let g:adrone_say_separator_string     = get(g:, 'adrone_say_separator_string', repeat('-', 120))
+let g:adrone_say_buffer_size          = get(g:, 'adrone_say_buffer_size', 2)
+let g:adrone_home_default_keymappings = get(g:, 'adrone_home_default_keymappings', 1)
 
 
 
