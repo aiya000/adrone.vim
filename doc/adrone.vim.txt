@@ -53,7 +53,7 @@ NeoBundleを導入している場合はあなたの.vimrcに
 ------------------------------------------------------------------------------
 *Commands*			*adrone-commands*
 
-:AdroneOpen			*:AdroneOpen*
+:AdroneHome			*:AdroneHome*
 		adrone.vimのホーム画面を開きます。
 		ホーム画面では今までつぶやいてきた内容を
 		日別に閲覧することができます。

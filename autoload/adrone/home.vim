@@ -16,7 +16,6 @@ let s:AT_LAST_PAGE  = -1
 function! adrone#home#open_buffer() "{{{
 	" Get page adlog file list
 	let g:adrone_private_field['pages'] = s:get_page_list()
-	"let g:adrone_private_field['page_at'] = 0
 
 	" Open view buffer
 	call s:open_frame()
@@ -30,8 +29,8 @@ endfunction "}}}
 
 "" Read adrone log 'adlog' to abstract frame
 function! adrone#home#read_adlog(adlog_file) "{{{
-	setl modifiable   " unlock temporary
-
+	" unlock temporary
+	setl modifiable
 	" Clean up screen
 	%d
 
@@ -54,8 +53,8 @@ function! adrone#home#read_adlog(adlog_file) "{{{
 
 	" Delet brank line, and move to top
 	execute 'normal! ddgg'
-
-	setl nomodifiable   " lock screen
+	" lock screen
+	setl nomodifiable
 endfunction "}}}
 
 
@@ -116,10 +115,8 @@ function! s:adrone_home_option_setting() "{{{
 	setl nomodifiable
 	setl noswapfile
 	setl buftype=nofile
-
 	setl nonumber
 	setl statusline=[adrone_home]
-
 	setf adrone_home
 endfunction "}}}
 
