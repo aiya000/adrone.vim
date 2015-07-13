@@ -10,14 +10,13 @@ set cpo&vim
 "-------------------"
 "Private
 
-let s:AT_DAILY_PAGE = -2
-let g:adrone_private_field = {}
-let g:adrone_private_field['pages']   = []
-let g:adrone_private_field['page_at'] = s:AT_DAILY_PAGE
+let s:AT_DAILY_PAGE  = -2 | lockvar s:AT_DAILY_PAGE
+let g:adrone#pages   = []
+let g:adrone#page_at = s:AT_DAILY_PAGE
 
 "-------------------"
 
-let s:adrone_version = '0.0.17'
+let s:adrone_version = '0.0.18'
 
 augroup AdroneSay
 	autocmd!

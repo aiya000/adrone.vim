@@ -4,10 +4,10 @@ set cpo&vim
 "-------------------"
 
 " Default page number on started up
-let s:AT_DAILY_PAGE = -2
+let s:AT_DAILY_PAGE = -2 | lockvar s:AT_DAILY_PAGE
 
 " Oldest page number
-let s:AT_LAST_PAGE  = -1
+let s:AT_LAST_PAGE  = -1 | lockvar s:AT_LAST_PAGE
 
 "-------------------"
 
@@ -15,7 +15,7 @@ let s:AT_LAST_PAGE  = -1
 "" Open home buffer
 function! adrone#home#open_buffer() "{{{
 	" Get page adlog file list
-	let g:adrone_private_field['pages'] = s:get_page_list()
+	let g:adrone#pages = s:get_page_list()
 
 	" Open view buffer
 	call s:open_frame()
@@ -60,29 +60,29 @@ endfunction "}}}
 
 "" Read back page adlog
 function! adrone#home#future_adlog() "{{{
-	let l:pages        = g:adrone_private_field['pages']
-	let l:current_page = g:adrone_private_field['page_at']   " for readability
+	let l:pages        = g:adrone#pages
+	let l:current_page = g:adrone#page_at   " for readability
 	let l:newest_page  = len(l:pages) - 1
-	let g:adrone_private_field['page_at'] =
+	let g:adrone#page_at =
 	\		  l:current_page == s:AT_DAILY_PAGE ? l:newest_page
 	\		: l:current_page == l:newest_page   ? l:newest_page
 	\		                                    : l:current_page + 1
 
-	call adrone#home#read_adlog(l:pages[g:adrone_private_field['page_at']])
+	call adrone#home#read_adlog(l:pages[g:adrone#page_at])
 endfunction "}}}
 
 
 "" Read next page adlog
 function! adrone#home#past_adlog() "{{{
-	let l:pages        = g:adrone_private_field['pages']
-	let l:current_page = g:adrone_private_field['page_at']   " for readability
+	let l:pages        = g:adrone#pages
+	let l:current_page = g:adrone#page_at   " for readability
 	let l:newest_page  = len(l:pages) - 1
-	let g:adrone_private_field['page_at'] =
+	let g:adrone#page_at =
 	\		  l:current_page     == s:AT_DAILY_PAGE ? l:newest_page - 1
 	\		: l:current_page - 1 == s:AT_LAST_PAGE  ? l:current_page
 	\		                                        : l:current_page - 1
 
-	call adrone#home#read_adlog(l:pages[g:adrone_private_field['page_at']])
+	call adrone#home#read_adlog(l:pages[g:adrone#page_at])
 endfunction "}}}
 
 
