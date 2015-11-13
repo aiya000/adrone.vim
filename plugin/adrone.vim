@@ -30,9 +30,9 @@ let g:adrone_home_default_keymappings = get(g:, 'adrone_home_default_keymappings
 
 
 
-command! AdroneHome    call adrone#open_home_buffer()
-command! AdroneSay     call adrone#open_say_buffer()
-command! AdroneVersion echo s:adrone_version
+command! -bar AdroneHome    call adrone#open_home_buffer()
+command! -bar AdroneSay     call adrone#open_say_buffer()
+command! -bar AdroneVersion echo s:adrone_version
 
 
 
