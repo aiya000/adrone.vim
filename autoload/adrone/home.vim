@@ -11,7 +11,6 @@ let s:AT_LAST_PAGE  = -1 | lockvar s:AT_LAST_PAGE
 
 "-------------------"
 
-
 "" Open home buffer
 function! adrone#home#open_buffer() "{{{
 	" Get page adlog file list
@@ -19,17 +18,15 @@ function! adrone#home#open_buffer() "{{{
 
 	" Open view buffer
 	call s:open_frame()
-	call s:adrone_home_option_setting()
 
 	if g:adrone_home_default_keymappings
 		call s:define_default_buffer_key_mappings()
 	endif
 endfunction "}}}
 
-
 "" Read adrone log 'adlog' to abstract frame
 function! adrone#home#read_adlog(adlog_file) "{{{
-	" unlock temporary
+	" Unlock temporary
 	setl modifiable
 	" Clean up screen
 	%d
@@ -38,7 +35,7 @@ function! adrone#home#read_adlog(adlog_file) "{{{
 	try
 		let l:adlog = readfile(a:adlog_file)
 	catch /E484/
-		" if not exists target adlog file
+		" If not exists target adlog file
 		execute 'normal! a' . g:adrone_say_separator_string . "\n"
 		\                   . 'nothing say log'             . "\n"
 		\                   . g:adrone_say_separator_string . "\n"
@@ -51,12 +48,11 @@ function! adrone#home#read_adlog(adlog_file) "{{{
 		execute 'normal! a' . l:line . "\n"
 	endfor
 
-	" Delet brank line, and move to top
+	" Delete brank line and Move to top
 	execute 'normal! ddgg'
-	" lock screen
+	" Lock screen
 	setl nomodifiable
 endfunction "}}}
-
 
 "" Read back page adlog
 function! adrone#home#future_adlog() "{{{
@@ -71,7 +67,6 @@ function! adrone#home#future_adlog() "{{{
 	call adrone#home#read_adlog(l:pages[g:adrone#page_at])
 endfunction "}}}
 
-
 "" Read next page adlog
 function! adrone#home#past_adlog() "{{{
 	let l:pages        = g:adrone#pages
@@ -85,50 +80,40 @@ function! adrone#home#past_adlog() "{{{
 	call adrone#home#read_adlog(l:pages[g:adrone#page_at])
 endfunction "}}}
 
-
 "#-=- -=- -=- -=- -=- -=- -=- -=- -=-#"
-
 
 " Return paths of adrog file
 function! s:get_page_list() "{{{
 	return split(glob(g:adrone_say_output_dir . '/*'), '\n')
 endfunction "}}}
 
-
 " Open abstract frame with default page (home)
 function! s:open_frame() "{{{
 	let l:daily_name = strftime('%Y-%m-%d_adrone_say.adlog', localtime())
 	let l:daily_file = g:adrone_say_output_dir . '/' . l:daily_name
 
-	" if opened another buffer, open new window
+	" If opened another buffer, Open new scratch buffer
 	if expand('%') !=# ''
 		new
 	endif
-
-	" Read detail for abstract frame
-	call adrone#home#read_adlog(l:daily_file)
-endfunction "}}}
-
-
-" Optimize options in buffer
-function! s:adrone_home_option_setting() "{{{
 	setl nomodifiable
 	setl noswapfile
 	setl buftype=nofile
 	setl nonumber
 	setl statusline=[adrone_home]
 	setf adrone_home
+
+	" Read detail for abstract frame
+	call adrone#home#read_adlog(l:daily_file)
 endfunction "}}}
 
-
-" Defining plugin buffer keymappings
+" Define plugin buffer keymappings
 function! s:define_default_buffer_key_mappings() "{{{
 	nmap <silent><buffer> <C-r> <Plug>(adrone_home_reload)
 	nmap <silent><buffer> b     <Plug>(adrone_home_future)
 	nmap <silent><buffer> f     <Plug>(adrone_home_past)
 	nmap <silent><buffer> s     <Plug>(adrone_home_open_say)
 endfunction "}}}
-
 
 "-------------------"
 let &cpo = s:save_cpo
